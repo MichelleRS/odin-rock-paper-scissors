@@ -1,7 +1,7 @@
-/*
-Your game is going to play against the computer, so begin with a function called getComputerChoice that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. We’ll use this function in the game to make the computer’s play. Tip: use the console to make sure this is returning the expected output before moving to the next step!
-*/
+let playerScore = 0;
+let computerScore = 0;
 
+// randomly return computer choice of "rock", "paper", or "scissors"
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     msg = "";
@@ -15,16 +15,18 @@ function getComputerChoice() {
     } else {
         msg = "Error! Please try again.";
     }
-    alert(msg);
+    alert("Computer chose " + msg);
     return randomNumber;
 }
 
-/*
-Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
-Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
-You want to return the results of this function call, not console.log() them. You’re going to use what you return later on, so let’s test this function by using console.log to see the results:
-*/
 
+// add player prompt
+let playerSelection = prompt("Choose rock, paper, or scissors.");
+playerSelection = playerSelection.toLowerCase();
+
+
+
+// play single round and return winner
 function playRound(playerSelection, computerSelection) {
     result = "";
 
@@ -36,13 +38,16 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "paper" && computerSelection === 0) ||
         (playerSelection === "scissors" && computerSelection === 1)) {
         result = "You win!";
+        playerScore++;
     } else {
         result = "Computer wins!";
+        computerScore++;
     }
+    alert(result);
     return result;
 }
 
-const playerSelection = "Rock";
 const computerSelection = getComputerChoice();
-
-console.log(playRound(playerSelection.toLowerCase(), computerSelection));
+console.log(playRound(playerSelection, computerSelection));
+console.log("Player score: " + playerScore);
+console.log("Computer score: " + computerScore);
