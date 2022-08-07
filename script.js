@@ -34,15 +34,35 @@ function getRoundResult(playerChoice, computerChoice) {
     return result;
 }
 
+/* play a round that includes:
+(1) prompt player to make a choice;
+(2) get random computer choice;
+(3) compare choices
+(4) log round result and scores
+*/
 function playRound() {
     let playerChoice = prompt("Choose rock, paper, or scissors.");
     playerChoice = playerChoice.toLowerCase();
     console.log("Player choice: " + playerChoice);
     let computerChoice = getComputerChoice();
-    let roundResultResult = getRoundResult(playerChoice, computerChoice);
-    console.log(roundResultResult);
+    let roundResult = getRoundResult(playerChoice, computerChoice);
+    console.log(roundResult);
     console.log("Player score: " + playerScore);
     console.log("Computer score: " + computerScore);
+}
+
+// compare final scores and log a winner
+function finalResult(playerScore, computerScore) {
+    result = "";
+
+    if (playerScore > computerScore) {
+        result = "Player wins the 5 rounds!";
+    } else if (computerScore > playerScore) {
+        result = "Computer wins the 5 rounds.";
+    } else {
+        result = "The 5 rounds resulted in a tie!";
+    }
+    return result;
 }
 
 // start of app
@@ -53,5 +73,8 @@ let computerScore = 0
 
 // loop to play 5 rounds of the game
 for (let i = 0; i < 5; i++) {
-    playRound(i);
+    playRound();
 }
+
+// log final game result
+console.log(finalResult(playerScore, computerScore));
