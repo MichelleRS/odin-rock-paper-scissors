@@ -1,53 +1,55 @@
-let playerScore = 0;
-let computerScore = 0;
-
-// randomly return computer choice of "rock", "paper", or "scissors"
+// get random computer choice and display
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
-    msg = "";
+    let choiceStr = "";
 
     if (randomNumber === 0) {
-        msg = "rock";
+        choiceStr = "rock";
     } else if (randomNumber === 1) {
-        msg = "paper";
-    } else if (randomNumber === 2) {
-        msg = "scissors";
+        choiceStr = "paper";
     } else {
-        msg = "Error! Please try again.";
+        choiceStr = "scissors";
     }
-    alert("Computer chose " + msg);
+    console.log("Computer choice: " + choiceStr);
     return randomNumber;
 }
 
-
-// add player prompt
-let playerSelection = prompt("Choose rock, paper, or scissors.");
-playerSelection = playerSelection.toLowerCase();
-
-
-
-// play single round and return winner
-function playRound(playerSelection, computerSelection) {
+// compare player and computer choice, declare a winner, and award 1 pt to winner
+function getRoundResult(playerChoice, computerChoice) {
     result = "";
 
-    if ((playerSelection === "rock" && computerSelection === 0) ||
-        (playerSelection === "paper" && computerSelection === 1) ||
-        (playerSelection === "scissors" && computerSelection === 2)) {
-        result = "It's a tie!";
-    } else if ((playerSelection === "rock" && computerSelection === 2) ||
-        (playerSelection === "paper" && computerSelection === 0) ||
-        (playerSelection === "scissors" && computerSelection === 1)) {
+    if ((playerChoice === "rock" && computerChoice === 0) ||
+        (playerChoice === "paper" && computerChoice === 1) ||
+        (playerChoice ==="scissors" && computerChoice === 2)) {
+        result = "It's a tie.";
+    } else if ((playerChoice === "rock" && computerChoice === 2) ||
+        (playerChoice === "paper" && computerChoice === 0) ||
+        (playerChoice === "scissors" && computerChoice === 1)) {
         result = "You win!";
         playerScore++;
     } else {
-        result = "Computer wins!";
+        result = "Computer wins.";
         computerScore++;
     }
-    alert(result);
     return result;
 }
 
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+// start of app
+
+// start players at 0
+let playerScore = 0
+let computerScore = 0
+
+// loop to play 5 rounds of the game
+
+
+// prompt player choice and convert to lowercase
+let playerChoice = prompt("Choose rock, paper, or scissors.");
+playerChoice = playerChoice.toLowerCase();
+console.log("Player choice: " + playerChoice);
+
+let computerChoice = getComputerChoice();
+let roundResultResult = getRoundResult(playerChoice, computerChoice);
+console.log(roundResultResult);
 console.log("Player score: " + playerScore);
 console.log("Computer score: " + computerScore);
